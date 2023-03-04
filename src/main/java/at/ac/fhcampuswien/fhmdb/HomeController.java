@@ -7,15 +7,22 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
+
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+
+
+
+    public static void main(String[] args) {}
     @FXML
     public JFXButton searchBtn;
 
@@ -31,17 +38,48 @@ public class HomeController implements Initializable {
     @FXML
     public JFXButton sortBtn;
 
-    public List<Movie> allMovies = Movie.initializeMovies();
+    public final List<Movie> allMovies = Movie.initializeMovies();
 
 
     private final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();   // automatically updates corresponding UI elements when underlying data changes
 
+
+
+    public static void sortMoviesByTitleAscending(ObservableList<Movie> movies) {
+        FXCollections.sort(movies, Comparator.comparing(Movie::getTitle));
+    }
+
+    public static void sortMoviesByTitleDescending(ObservableList<Movie> movies) {
+        FXCollections.sort(movies, Comparator.comparing(Movie::getTitle).reversed());
+    }
+
+    public static int plus(int a, int b){
+        return a+b;
+
+    }
+
+    public static ObservableList<Movie> searchMovies(ObservableList<Movie> movies, String searchTerm) {
+
+        // search within list, compare String with getter, add found to new list, return new list
+        ObservableList<Movie> searchResults = FXCollections.observableArrayList();
+        for (Movie movie : movies) {
+            if (movie.getTitle().contains(searchTerm) || movie.getDescription().contains(searchTerm)) {
+                searchResults.add(movie);
+            }
+        }
+        return searchResults;
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        observableMovies.addAll(allMovies);         // add dummy data to observable list
+
+        observableMovies.addAll(allMovies);         // add CSV Data data to observable list
 
         // initialize UI stuff
         movieListView.setItems(observableMovies);   // set data of observable list to list view
+
+
         movieListView.setCellFactory(movieListView -> new MovieCell()); // use custom cell factory to display data
 
         // TODO add genre filter items with genreComboBox.getItems().addAll(...)
@@ -49,25 +87,43 @@ public class HomeController implements Initializable {
                 "CRIME", "DRAMA", "DOCUMENTARY", "FAMILY", "FANTASY", "HISTORY", "HORROR",
                 "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR",
                 "WESTERN");
-
         genreComboBox.setPromptText("Filter by Genre");
+
+        // Takes search Term and searches
+        searchField.setOnAction(event -> {
+            String searchTerm = searchField.getText();
+            ObservableList<Movie> searchResults = searchMovies(observableMovies, searchTerm);
+            movieListView.setItems(searchResults);
+        });
+
 
         // TODO add event handlers to buttons and call the regarding methods
         // either set event handlers in the fxml file (onAction) or add them here
 
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
-            if(sortBtn.getText().equals("Sort (asc)")) {
+                    if (sortBtn.getText().equals("Sort (asc)")) {
+
+                        sortMoviesByTitleAscending(observableMovies);
+                        movieListView.setItems(observableMovies);
 
 
-                // TODO sort observableMovies ascending
-                sortBtn.setText("Sort (desc)");
-            } else {
-                // TODO sort observableMovies descending
-                sortBtn.setText("Sort (asc)");
-            }
-        });
+                        // TODO sort observableMovies ascending
+                        sortBtn.setText("Sort (desc)");
+
+                    } else {
+
+                        sortMoviesByTitleDescending(observableMovies);
+                        movieListView.setItems(observableMovies);
+                        // TODO sort observableMovies descending
+
+                        sortBtn.setText("Sort (asc)");
 
 
+                    }
+                }
+
+
+        );
     }
 }
