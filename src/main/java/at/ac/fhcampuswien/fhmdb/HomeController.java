@@ -21,8 +21,11 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
 
+    public JFXButton resetBtn;
 
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+    }
+
     @FXML
     public JFXButton searchBtn;
 
@@ -38,11 +41,10 @@ public class HomeController implements Initializable {
     @FXML
     public JFXButton sortBtn;
 
-    public final List<Movie> allMovies = Movie.initializeMovies();
+    public final List<Movie> allMovies = FhmdbApplication.initializeMovies();
 
 
     private final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();   // automatically updates corresponding UI elements when underlying data changes
-
 
 
     public static void sortMoviesByTitleAscending(ObservableList<Movie> movies) {
@@ -53,8 +55,8 @@ public class HomeController implements Initializable {
         FXCollections.sort(movies, Comparator.comparing(Movie::getTitle).reversed());
     }
 
-    public static int plus(int a, int b){
-        return a+b;
+    public static int plus(int a, int b) {
+        return a + b;
 
     }
 
@@ -66,6 +68,9 @@ public class HomeController implements Initializable {
             if (movie.getTitle().contains(searchTerm) || movie.getDescription().contains(searchTerm)) {
                 searchResults.add(movie);
             }
+        }
+        for (int i = 0; i < searchResults.size(); i++) {
+            System.out.println(searchResults.get(i).getTitle());
         }
         return searchResults;
     }
@@ -83,19 +88,18 @@ public class HomeController implements Initializable {
         movieListView.setCellFactory(movieListView -> new MovieCell()); // use custom cell factory to display data
 
         // TODO add genre filter items with genreComboBox.getItems().addAll(...)
-        genreComboBox.getItems().addAll("ACTION", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY",
-                "CRIME", "DRAMA", "DOCUMENTARY", "FAMILY", "FANTASY", "HISTORY", "HORROR",
-                "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR",
-                "WESTERN");
+        genreComboBox.getItems().addAll("ACTION", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY", "CRIME", "DRAMA", "DOCUMENTARY", "FAMILY", "FANTASY", "HISTORY", "HORROR", "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR", "WESTERN");
         genreComboBox.setPromptText("Filter by Genre");
 
         // Takes search Term and searches
         searchField.setOnAction(event -> {
             String searchTerm = searchField.getText();
-            ObservableList<Movie> searchResults = searchMovies(observableMovies, searchTerm);
-            movieListView.setItems(searchResults);
+            movieListView.setItems(searchMovies(observableMovies, searchTerm));
         });
-
+        //This reset button doesnt do much but its nice.
+        resetBtn.setOnAction(actionEvent -> {
+            movieListView.setItems(observableMovies);   // set data of observable list to list view
+        });
 
         // TODO add event handlers to buttons and call the regarding methods
         // either set event handlers in the fxml file (onAction) or add them here
@@ -106,17 +110,12 @@ public class HomeController implements Initializable {
 
                         sortMoviesByTitleAscending(observableMovies);
                         movieListView.setItems(observableMovies);
-
-
-                        // TODO sort observableMovies ascending
                         sortBtn.setText("Sort (desc)");
 
                     } else {
 
                         sortMoviesByTitleDescending(observableMovies);
                         movieListView.setItems(observableMovies);
-                        // TODO sort observableMovies descending
-
                         sortBtn.setText("Sort (asc)");
 
 
