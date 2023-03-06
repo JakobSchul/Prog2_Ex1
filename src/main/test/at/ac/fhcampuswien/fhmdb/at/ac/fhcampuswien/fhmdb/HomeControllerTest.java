@@ -1,5 +1,3 @@
-package at.ac.fhcampuswien.fhmdb;
-
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +31,7 @@ public class HomeControllerTest {
     public void knight_searchMovies_returns_2() {
 
         // given
-        // Observable list at the top
+        // Observable list at the top -
 
         // when
         // knight can be found in list
