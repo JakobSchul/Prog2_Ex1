@@ -34,7 +34,7 @@ public class HomeControllerTest {
         // Observable list at the top -
 
         // when
-        // knight can be found in list
+        // knight can be found in list -
 
         // then
         assertEquals(2, searchMovies(dummyData(), "Knight").size());
