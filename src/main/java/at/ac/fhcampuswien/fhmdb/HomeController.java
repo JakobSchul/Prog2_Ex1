@@ -23,9 +23,6 @@ public class HomeController implements Initializable {
 
     public JFXButton resetBtn;
 
-    public static void main(String[] args) {
-    }
-
     @FXML
     public JFXButton searchBtn;
 
@@ -55,10 +52,6 @@ public class HomeController implements Initializable {
         FXCollections.sort(movies, Comparator.comparing(Movie::getTitle).reversed());
     }
 
-    public static int plus(int a, int b) {
-        return a + b;
-
-    }
 
     public static ObservableList<Movie> searchMovies(ObservableList<Movie> movies, String searchTerm) {
 
@@ -68,9 +61,6 @@ public class HomeController implements Initializable {
             if (movie.getTitle().contains(searchTerm) || movie.getDescription().contains(searchTerm)) {
                 searchResults.add(movie);
             }
-        }
-        for (int i = 0; i < searchResults.size(); i++) {
-            System.out.println(searchResults.get(i).getTitle());
         }
         return searchResults;
     }
@@ -83,8 +73,6 @@ public class HomeController implements Initializable {
 
         // initialize UI stuff
         movieListView.setItems(observableMovies);   // set data of observable list to list view
-
-
         movieListView.setCellFactory(movieListView -> new MovieCell()); // use custom cell factory to display data
 
         // TODO add genre filter items with genreComboBox.getItems().addAll(...)

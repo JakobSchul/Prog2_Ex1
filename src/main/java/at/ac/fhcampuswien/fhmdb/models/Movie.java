@@ -11,7 +11,7 @@ public class Movie {
 
     // private String genre;
 
-    public List<String> genreList = Arrays.asList("Action", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY",
+    public List<String> genreList = Arrays.asList("ACTION", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY",
             "CRIME", "DRAMA", "DOCUMENTARY", "FAMILY", "FANTASY", "HISTORY", "HORROR",
             "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR",
             "WESTERN");
