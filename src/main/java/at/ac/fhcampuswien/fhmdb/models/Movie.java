@@ -8,10 +8,10 @@ public class Movie {
 
     public String title;
     private final String description;
-
+    private final List<String> genreList;
     // private String genre;
 
-    public List<String> genreList = Arrays.asList("ACTION", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY",
+    public List<String> genresList = Arrays.asList("ACTION", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY",
             "CRIME", "DRAMA", "DOCUMENTARY", "FAMILY", "FANTASY", "HISTORY", "HORROR",
             "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR",
             "WESTERN");
@@ -20,11 +20,10 @@ public class Movie {
 //        return genreList;
 //    }
 
-    public Movie(String title, String description, List genreList) {
+    public Movie(String title, String description, List<String> genreList) {
         this.title = title;
         this.description = description;
-
-
+        this.genreList = genreList;
     }
 
     public String getTitle() {
@@ -36,4 +35,11 @@ public class Movie {
     }
 
 
+    public List<String> getGenreList(){
+        return genreList;
+    }
+
+    public String getGenreStrings(){
+        return getGenreList().toString();
+    }
 }

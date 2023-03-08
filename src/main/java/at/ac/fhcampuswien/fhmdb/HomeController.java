@@ -18,7 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable {
+public class HomeController implements Initializable{
 
 
     public JFXButton resetBtn;
@@ -41,7 +41,7 @@ public class HomeController implements Initializable {
     public final List<Movie> allMovies = FhmdbApplication.initializeMovies();
 
 
-    private final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();   // automatically updates corresponding UI elements when underlying data changes
+    private ObservableList<Movie> observableMovies = FXCollections.observableArrayList();   // automatically updates corresponding UI elements when underlying data changes
 
 
     public static void sortMoviesByTitleAscending(ObservableList<Movie> movies) {
@@ -53,7 +53,7 @@ public class HomeController implements Initializable {
     }
 
 
-    public static ObservableList<Movie> searchMovies(ObservableList<Movie> movies, String searchTerm) {
+    public ObservableList<Movie> searchMovies(ObservableList<Movie> movies, String searchTerm) {
 
         // search within list, compare String with getter, add found to new list, return new list
         ObservableList<Movie> searchResults = FXCollections.observableArrayList();
