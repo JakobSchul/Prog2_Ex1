@@ -1,9 +1,13 @@
 package at.ac.fhcampuswien.fhmdb.test;
+import at.ac.fhcampuswien.fhmdb.HomeController;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.Test;
 
+import javax.swing.text.html.ListView;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,6 +18,7 @@ import static org.junit.Assert.assertEquals;
 public class HomeControllerTest {
 
 
+    private JFXButton resetBtn;
     public ObservableList<Movie> dummyData() {
 
         List<String> genreList = Collections.singletonList("Action");
@@ -27,20 +32,41 @@ public class HomeControllerTest {
 
     }
 
+//    @Test
+//    public void if_search_field_empty_all_movies_are_shown(){
+//        //Given
+//        ObservableList<Movie> movies = dummyData();
+//        //When
+//        searchMovies(movies,"");
+//        //Then
+//        assertEquals(3,searchMovies(dummyData(),"").size());
+//    }
+//
+//    @Test
+//    public void search_finds_in_description_the_and_returns_2(){
+//        //Given
+//        ObservableList<Movie> movies = dummyData();
+//        //When
+//        searchMovies(movies,"the");
+//        //Then
+//        assertEquals(2,searchMovies(dummyData(),"the").size());
+//
+//    }
 
-    @Test
-    public void knight_searchMovies_returns_2() {
-
-        // given
-        // Observable list at the top -
-
-        // when
-        // knight can be found in list -
-
-        // then
+//    @Test
+//    public void knight_searchMovies_returns_2() {
+//
+//        // given
+//        // Observable list at the top -
+//        ObservableList<Movie> movies = dummyData();
+//        // when
+//        // knight can be found in list -
+//        searchMovies(movies,"Knight");
+//        // then
 //        assertEquals(2, searchMovies(dummyData(), "Knight").size());
+//
+//    }
 
-    }
 
     @Test
     public void descendingTest() {
@@ -61,8 +87,9 @@ public class HomeControllerTest {
 
         sortMoviesByTitleAscending(movies);
         assertEquals("Ahe Shawshank Redemption",movies.get(0).getTitle());
-
-
-
     }
+
+
+
+
 }
