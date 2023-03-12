@@ -1,17 +1,17 @@
-//package at.ac.fhcampuswien.fhmdb.test;
-//import at.ac.fhcampuswien.fhmdb.models.Movie;
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
-//import org.junit.Test;
-//
-//import java.util.Collections;
-//import java.util.List;
-//
-//import static at.ac.fhcampuswien.fhmdb.HomeController.*;
-//
-//import static org.junit.Assert.assertEquals;
-//
-//public class HomeControllerTest {
+package at.ac.fhcampuswien.fhmdb.test;
+import at.ac.fhcampuswien.fhmdb.models.Movie;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import org.junit.Test;
+
+import java.util.Collections;
+import java.util.List;
+
+import static at.ac.fhcampuswien.fhmdb.HomeController.*;
+
+import static org.junit.Assert.assertEquals;
+
+public class HomeControllerTest {
 //
 //
 //    public ObservableList<Movie> dummyData() {
@@ -65,4 +65,4 @@
 //
 //
 //    }
-//}
+}
