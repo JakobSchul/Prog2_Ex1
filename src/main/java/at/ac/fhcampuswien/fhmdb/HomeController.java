@@ -22,7 +22,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable{
+public class HomeController implements Initializable {
 
 
     public JFXButton resetBtn;
@@ -70,6 +70,39 @@ public class HomeController implements Initializable{
     }
 
 
+    public void searchFieldAction() {
+        System.out.println("searchfieldAction");
+
+        String searchTerm = searchField.getText();
+        movieListView.setItems(searchMovies(observableMovies, searchTerm));
+
+
+    }
+
+    public void resetBtnAction() {
+
+        movieListView.setItems(observableMovies);
+
+    }
+
+    public void sortBtnAction() {
+        if (sortBtn.getText().equals("Sort (asc)")) {
+
+            sortMoviesByTitleAscending(observableMovies);
+            movieListView.setItems(observableMovies);
+            sortBtn.setText("Sort (desc)");
+
+        } else {
+
+            sortMoviesByTitleDescending(observableMovies);
+            movieListView.setItems(observableMovies);
+            sortBtn.setText("Sort (asc)");
+
+
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -85,12 +118,16 @@ public class HomeController implements Initializable{
 
         // Takes search Term and searches
         searchField.setOnAction(event -> {
-            String searchTerm = searchField.getText();
-            movieListView.setItems(searchMovies(observableMovies, searchTerm));
+            searchFieldAction();
+
+        });
+        searchBtn.setOnAction(event -> {
+            searchFieldAction();
+
         });
         //This reset button doesnt do much but its nice.
         resetBtn.setOnAction(actionEvent -> {
-            movieListView.setItems(observableMovies);   // set data of observable list to list view
+            resetBtnAction();   // set data of observable list to list view
         });
 
         // TODO add event handlers to buttons and call the regarding methods
@@ -98,20 +135,8 @@ public class HomeController implements Initializable{
 
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
-                    if (sortBtn.getText().equals("Sort (asc)")) {
+                    sortBtnAction();
 
-                        sortMoviesByTitleAscending(observableMovies);
-                        movieListView.setItems(observableMovies);
-                        sortBtn.setText("Sort (desc)");
-
-                    } else {
-
-                        sortMoviesByTitleDescending(observableMovies);
-                        movieListView.setItems(observableMovies);
-                        sortBtn.setText("Sort (asc)");
-
-
-                    }
                 }
 
 

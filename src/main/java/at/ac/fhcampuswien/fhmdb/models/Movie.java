@@ -16,9 +16,7 @@ public class Movie {
             "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR",
             "WESTERN");
 
-//    public List<String> getGenreList() {
-//        return genreList;
-//    }
+
 
     public Movie(String title, String description, List<String> genreList) {
         this.title = title;
