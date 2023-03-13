@@ -1,6 +1,10 @@
 package at.ac.fhcampuswien.fhmdb.models;
 
 import java.util.Arrays;
+
+import java.util.ArrayList;
+
+
 import java.util.List;
 
 
@@ -29,23 +33,46 @@ public class Movie {
     }
 
 
-    public List<String> getGenreList(){
+
+
+    public static List<Movie> initializeMovies() {
+        List<Movie> movies = new ArrayList<>();
+        // TODO add some dummy data here
+
+        return movies;
+    }
+    public List<String> getGenreList () {
         return genreList;
     }
 
-    public String getGenreStrings(){
+    public String getGenreStrings () {
         return getGenreList().toString();
     }
 
-    public void setTitle(String title) {
+    public void setTitle (String title){
         this.title = title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+
+
+
+    public boolean compareTitle (String ser){
+
+
+        return title.toLowerCase().contains(ser);
+    }
+    public boolean compareDescription (String ser){
+
+        return description.toLowerCase().contains(ser);
+
+    }
+    public boolean compareGenreStrings (String ser){
+        return getGenreStrings().toLowerCase().contains(ser);
+//                description.toLowerCase().contains(ser);
+
+//        System.out.println(ser);
     }
 
-    public void setGenreList(List<String> genreList) {
-        this.genreList = genreList;
-    }
+
+
 }

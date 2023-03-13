@@ -55,37 +55,47 @@ public class HomeController implements Initializable {
         FXCollections.sort(movies, Comparator.comparing(Movie::getTitle).reversed());
     }
 
-    public ObservableList<Movie> searchMovies(ObservableList<Movie> movies) {
-        // search within list, compare String with getter, add found to new list, return new list
-        ObservableList<Movie> searchResults = FXCollections.observableArrayList();
+
+    public String getComboboxString() {
         String pickedGenre;
-        String filterByGenre = "Filter";
-
-
         try {
             pickedGenre = genreComboBox.getValue().toString().toLowerCase();
-        }
-        catch(Exception e) {
-                   pickedGenre = " ";
-        }
-        for (Movie movie : movies) {
-                if (pickedGenre.equals(filterByGenre)) {
-                    System.out.println(pickedGenre);
-                    System.out.println("Not GOood");
-                    return movies;
-                }
-                String searchTerm = searchField.getText();
-                if (movie.getTitle().toLowerCase().contains(searchTerm.toLowerCase()) || movie.getDescription().toLowerCase().contains(searchTerm.toLowerCase())) {
-                    for (int i = 0; i < movie.getGenreList().size(); i++) {
-                        if ((movie.getGenreList().get(i).toString().toLowerCase().contains(pickedGenre.toString().toLowerCase()))|| pickedGenre == filterByGenre ) {
 
-                            searchResults.add(movie);
-                        }
-                    }
-                }
+
+        } catch (Exception e) {
+            return " ";
         }
+        return pickedGenre;
+
+
+    }
+
+
+    public ObservableList<Movie> searchMovies(ObservableList<Movie> movies) {
+
+
+        ObservableList<Movie> searchResults = FXCollections.observableArrayList();
+        System.out.println("asdasd");
+        for (Movie movie : movies) {
+//            System.out.println(getComboboxString());
+            //|| movie.compareGenreStrings(genreNotChanged) == true) {
+
+            if (movie.compareGenreStrings(getComboboxString())) {
+                if (movie.compareTitle(searchField.getText().toLowerCase()) == true || movie.compareDescription(searchField.getText().toLowerCase()) == true) {
+                    searchResults.add(movie);
+                }
+
+
+            }
+
+
+        }
+
+
         return searchResults;
     }
+
+
     public void searchFieldAction() {
 
         movieListView.setItems(searchMovies(observableMovies));
@@ -97,7 +107,7 @@ public class HomeController implements Initializable {
         searchField.clear();
 
         // setzt auch genre back
-        genreComboBox.setValue(null);
+        genreComboBox.setValue(" ");
 
         return observableMovies;
     }
