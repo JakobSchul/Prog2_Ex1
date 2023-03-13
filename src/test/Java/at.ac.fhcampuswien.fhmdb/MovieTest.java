@@ -32,8 +32,11 @@ class MovieTest {
         // given
         Movie movie = new Movie("The best movie","This is the synapse of the best movie ever.", Arrays.asList("Drama"));
 
+        // when
+        String film = movie.getTitle();
+
         // then
-        assertEquals("The best movie", movie.getTitle());
+        assertEquals("The best movie", film);
     }
 
     @Test
@@ -42,8 +45,11 @@ class MovieTest {
         // given
         Movie movie = new Movie("The best movie","This is the synapse of the best movie ever.", Arrays.asList("Drama"));
 
+        // when
+        String film = movie.getTitle();
+
         //then
-        assertNotEquals("The beast movie",movie.getTitle());
+        assertNotEquals("The beast movie",film);
 
         // eigentlich der gleiche Test wie oben, schaut nur, dass es genau nicht matcht.
     }
@@ -54,8 +60,11 @@ class MovieTest {
         // given
         Movie movie = new Movie("The second best movie","This is the second best movie ever made!",Arrays.asList("Action"));
 
+        // when
+        String description = movie.getDescription();
+
         // then
-        assertEquals("This is the second best movie ever made!",movie.getDescription());
+        assertEquals("This is the second best movie ever made!",description);
 
     }
 
@@ -66,8 +75,11 @@ class MovieTest {
         List<String> genreList = Arrays.asList("Adventure");
         Movie movie = new Movie("Short movie title","What am I doing with my life?",genreList);
 
+        // when
+        List<String> genrelisttest = movie.getGenreList();
+
         // then
-        assertEquals(genreList,movie.getGenreList());
+        assertEquals(genreList,genrelisttest);
     }
 
     /*@Test
