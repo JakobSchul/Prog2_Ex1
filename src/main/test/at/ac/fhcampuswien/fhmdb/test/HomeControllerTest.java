@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 import javax.swing.text.html.ListView;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -90,5 +91,4 @@ public class HomeControllerTest {
         sortMoviesByTitleAscending(movies);
         assertEquals("Ahe Shawshank Redemption", movies.get(0).getTitle());
     }
-
 }
