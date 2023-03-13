@@ -29,23 +29,13 @@ public class FhmdbApplication extends Application {
             for (CSVRecord record : records) {
                 String title = record.get("original_title");
                 String overview = record.get("overview");
-                String genreString = record.get("genre").toString() + "Filter";
-
+                String genreString = record.get("genre") + "Filter";
                 System.out.println(genreString);
-
-
-// "['Science Fiction', 'Action', 'Adventure']"
-
                 List<String> genreList = Arrays.asList(genreString.split(" \\s* ,\\s*"));
-
-
-//
-
                 movies.add(new Movie(title, overview, genreList));
             }
             System.out.println("readCSV loaded");
         }
-
         return movies;
     }
 
@@ -54,14 +44,11 @@ public class FhmdbApplication extends Application {
         List<Movie> movies;
         try {
             movies = readCSV();
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         System.out.println("initializedMovies");
         return movies;
-
-
     }
 
     @Override

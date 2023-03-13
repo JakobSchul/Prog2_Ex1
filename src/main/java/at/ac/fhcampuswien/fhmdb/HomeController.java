@@ -49,20 +49,13 @@ public class HomeController implements Initializable {
 
     public static void sortMoviesByTitleAscending(ObservableList<Movie> movies) {
         FXCollections.sort(movies, Comparator.comparing(Movie::getTitle));
-
     }
 
     public static void sortMoviesByTitleDescending(ObservableList<Movie> movies) {
         FXCollections.sort(movies, Comparator.comparing(Movie::getTitle).reversed());
     }
 
-    public static Label resume;
-
     public ObservableList<Movie> searchMovies(ObservableList<Movie> movies) {
-
-
-//        System.out.println("searchMovies Methode");
-
         // search within list, compare String with getter, add found to new list, return new list
         ObservableList<Movie> searchResults = FXCollections.observableArrayList();
         String pickedGenre;
@@ -71,59 +64,32 @@ public class HomeController implements Initializable {
 
         try {
             pickedGenre = genreComboBox.getValue().toString().toLowerCase();
-
         }
         catch(Exception e) {
                    System.out.println("genreComboBox is NULL");
-
-            pickedGenre = " ";
+                   pickedGenre = " ";
         }
-
-
-
-
-
-            for (Movie movie : movies) {
+        for (Movie movie : movies) {
                 if (pickedGenre.equals(filterByGenre)) {
                     System.out.println(pickedGenre);
                     System.out.println("Not GOood");
                     return movies;
                 }
-
                 String searchTerm = searchField.getText();
-
                 if (movie.getTitle().toLowerCase().contains(searchTerm.toLowerCase()) || movie.getDescription().toLowerCase().contains(searchTerm.toLowerCase())) {
                     for (int i = 0; i < movie.getGenreList().size(); i++) {
-
-
                         if ((movie.getGenreList().get(i).toString().toLowerCase().contains(pickedGenre.toString().toLowerCase()))|| pickedGenre == filterByGenre ) {
 
                             searchResults.add(movie);
-
-
                         }
-
-
-
                     }
                 }
-
-
-            }
-
-//        }
-
-
+        }
         return searchResults;
     }
-
-
     public void searchFieldAction() {
-//        System.out.println("searchFieldAction Methode");
 
         movieListView.setItems(searchMovies(observableMovies));
-
-
     }
 
     public ObservableList<Movie> resetBtnAction() {
@@ -135,7 +101,6 @@ public class HomeController implements Initializable {
         genreComboBox.setValue(null);
 
         return observableMovies;
-
     }
 
     public void sortBtnAction() {
@@ -151,8 +116,6 @@ public class HomeController implements Initializable {
             sortMoviesByTitleDescending(observableMovies);
             searchFieldAction();
             sortBtn.setText("Sort (asc)");
-
-
         }
 
     }
@@ -200,8 +163,6 @@ public class HomeController implements Initializable {
                     sortBtnAction();
 
                 }
-
-
         );
     }
 }

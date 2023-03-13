@@ -9,11 +9,6 @@ public class Movie {
     public String title;
     private String description;
     private List<String> genreList;
-    // private String genre;
-
-
-
-
 
     public Movie(String title, String description, List<String> genreList) {
         this.title = title;
