@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 
@@ -48,89 +49,77 @@ public class HomeController implements Initializable {
 
     public static void sortMoviesByTitleAscending(ObservableList<Movie> movies) {
         FXCollections.sort(movies, Comparator.comparing(Movie::getTitle));
+
     }
 
     public static void sortMoviesByTitleDescending(ObservableList<Movie> movies) {
         FXCollections.sort(movies, Comparator.comparing(Movie::getTitle).reversed());
     }
 
-    public void genreBox() {
-
-//genreComboBox
-    }
-
+    public static Label resume;
 
     public ObservableList<Movie> searchMovies(ObservableList<Movie> movies) {
 
 
-        String searchTerm = searchField.getText();
-
-
-        List<String> genresList = Arrays.asList("ACTION", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY",
-                "CRIME", "DRAMA", "DOCUMENTARY", "FAMILY", "FANTASY", "HISTORY", "HORROR",
-                "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR",
-                "WESTERN");
-
-        System.out.println("searchMovies Methode");
+//        System.out.println("searchMovies Methode");
 
         // search within list, compare String with getter, add found to new list, return new list
         ObservableList<Movie> searchResults = FXCollections.observableArrayList();
-
-        for (Movie movie : movies) {
-            String pickedGenre;
-            if (genreComboBox.getValue()== null){
-                pickedGenre = " ";
-            }else{
-                pickedGenre = genreComboBox.getValue().toString().toLowerCase();
-
-            }
+        String pickedGenre;
+        String filterByGenre = "Filter";
 
 
-            if (movie.getTitle().toLowerCase().contains(searchTerm.toLowerCase()) || movie.getDescription().toLowerCase().contains(searchTerm.toLowerCase())) {
-//                System.out.println(movie.getGenreStrings().toLowerCase());
-//                System.out.println("Hurraa");
-//                System.out.println(pickedGenre);
-//                System.out.println(movie.getGenreList().stream().toString().toLowerCase().compareTo(pickedGenre.toString().toLowerCase()));
-                for (int i = 0; i < movie.getGenreList().size(); i++) {
-//                    System.out.println(movie.getGenreList().get(i).toString().toLowerCase());
-                    if ((movie.getGenreList().get(i).toString().toLowerCase().contains(pickedGenre.toString().toLowerCase()))) {
+        try {
+            pickedGenre = genreComboBox.getValue().toString().toLowerCase();
 
-//                        System.out.println("ENDLKICSHHHCSC");
-                        searchResults.add(movie);
+        }
+        catch(Exception e) {
+                   System.out.println("genreComboBox is NULL");
 
+            pickedGenre = " ";
+        }
+
+
+
+
+
+            for (Movie movie : movies) {
+                if (pickedGenre.equals(filterByGenre)) {
+                    System.out.println(pickedGenre);
+                    System.out.println("Not GOood");
+                    return movies;
+                }
+
+                String searchTerm = searchField.getText();
+
+                if (movie.getTitle().toLowerCase().contains(searchTerm.toLowerCase()) || movie.getDescription().toLowerCase().contains(searchTerm.toLowerCase())) {
+                    for (int i = 0; i < movie.getGenreList().size(); i++) {
+
+
+                        if ((movie.getGenreList().get(i).toString().toLowerCase().contains(pickedGenre.toString().toLowerCase()))|| pickedGenre == filterByGenre ) {
+
+                            searchResults.add(movie);
+
+
+                        }
 
 
 
                     }
-
-//
-
                 }
 
-//                System.out.println(movie.getTitle().toLowerCase());
-//                System.out.println(searchTerm.toLowerCase());
-//                System.out.println(movie.getDescription().toLowerCase());
 
-
-//              movie.getGenreList().toString().toLowerCase().equals(genreComboBox.getValue().toString().toLowerCase())){
-//                    System.out.println("movie.getGenreList().toString().toLowerCase(): " + movie.getGenreList().toString().toLowerCase());
-
-//                    System.out.println("genreComboBox.getValue().toString().toLowerCase(): " + genreComboBox.getValue().toString().toLowerCase());
             }
 
+//        }
 
 
-
-    }
         return searchResults;
     }
 
 
     public void searchFieldAction() {
-        System.out.println("searchFieldAction Methode");
-
-        String searchTerm = searchField.getText();
-
+//        System.out.println("searchFieldAction Methode");
 
         movieListView.setItems(searchMovies(observableMovies));
 
@@ -140,35 +129,28 @@ public class HomeController implements Initializable {
     public ObservableList<Movie> resetBtnAction() {
 
         movieListView.setItems(observableMovies);
+        searchField.clear();
 
         return observableMovies;
 
     }
 
     public void sortBtnAction() {
+
         if (sortBtn.getText().equals("Sort (asc)")) {
 
             sortMoviesByTitleAscending(observableMovies);
-            movieListView.setItems(observableMovies);
+            searchFieldAction();
             sortBtn.setText("Sort (desc)");
-
 
         } else {
 
             sortMoviesByTitleDescending(observableMovies);
-            movieListView.setItems(observableMovies);
+            searchFieldAction();
             sortBtn.setText("Sort (asc)");
 
 
         }
-
-    }
-
-    public void getGenre() {
-        String allGenres = genreComboBox.getItems().toString();
-
-        System.out.println(allGenres);
-
 
     }
 
@@ -183,12 +165,12 @@ public class HomeController implements Initializable {
         movieListView.setCellFactory(movieListView -> new MovieCell()); // use custom cell factory to display data
 
         // TODO add genre filter items with genreComboBox.getItems().addAll(...)
-        genreComboBox.getItems().addAll("ACTION", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY", "CRIME", "DRAMA", "DOCUMENTARY", "FAMILY", "FANTASY", "HISTORY", "HORROR", "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR", "WESTERN");
+        genreComboBox.getItems().addAll("Filter", "ACTION", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY", "CRIME", "DRAMA", "DOCUMENTARY", "FAMILY", "FANTASY", "HISTORY", "HORROR", "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR", "WESTERN");
         genreComboBox.setPromptText("Filter by Genre");
 
 
         genreComboBox.setOnAction(event -> {
-            genreBox();
+            searchFieldAction();
         });
 
 

@@ -32,6 +32,8 @@ public class MovieCell extends ListCell<Movie> {
             );
             genreLayout.setText(
                     movie.getGenreStrings() != null
+//                            ? movie.getGenreList().toString()
+
                             ? movie.getGenreStrings()
                             : "No description available"
             );
@@ -40,13 +42,13 @@ public class MovieCell extends ListCell<Movie> {
             // color scheme
             titleLayout.getStyleClass().add("text-yellow");
             descriptionLayout.getStyleClass().add("text-white");
-            genreLayout.getStyleClass().add("text-brown");
+            genreLayout.getStyleClass().add("text-white");
             layout.setBackground(new Background(new BackgroundFill(Color.web("#454545"), null, null)));
 
             // layout
             titleLayout.fontProperty().set(titleLayout.getFont().font(20));
             descriptionLayout.setMaxWidth(this.getScene().getWidth() - 30);
-            descriptionLayout.setWrapText(true);
+            descriptionLayout.setWrapText(true); //Zeilenumbruch machen = true
 
             genreLayout.setMaxWidth(this.getScene().getWidth() - 30);
             genreLayout.setWrapText(true);

@@ -17,10 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class FhmdbApplication extends Application {
-    public static List<String> genresList = Arrays.asList("ACTION", "ADVENTURE", "ANIMATION", "BIOGRAPHY", "COMEDY",
-            "CRIME", "DRAMA", "DOCUMENTARY", "FAMILY", "FANTASY", "HISTORY", "HORROR",
-            "MUSICAL", "MYSTERY", "ROMANCE", "SCIENCE_FICTION", "SPORT", "THRILLER", "WAR",
-            "WESTERN");
+
 
     public static List<Movie> readCSV() throws IOException {
         String csvPath = "src/main/resources/at/ac/fhcampuswien/fhmdb/Top_10000_Movies_firstTwentyEntries.csv";
@@ -32,17 +29,21 @@ public class FhmdbApplication extends Application {
             for (CSVRecord record : records) {
                 String title = record.get("original_title");
                 String overview = record.get("overview");
-                String genreString = record.get("genre").toString();
+                String genreString = record.get("genre").toString() + "Filter";
+
+                System.out.println(genreString);
 
 
+// "['Science Fiction', 'Action', 'Adventure']"
 
+                List<String> genreList = Arrays.asList(genreString.split(" \\s* ,\\s*"));
 
-                List<String> genreList = Arrays.asList(genreString.split("\\s*,\\s*" ));
 
 //
 
                 movies.add(new Movie(title, overview, genreList));
-            }System.out.println("readCSV loaded");
+            }
+            System.out.println("readCSV loaded");
         }
 
         return movies;
