@@ -57,12 +57,9 @@ public class Movie {
 
 
     public boolean compareTitle (String ser){
-
-
         return title.toLowerCase().contains(ser);
     }
     public boolean compareDescription (String ser){
-
         return description.toLowerCase().contains(ser);
 
     }

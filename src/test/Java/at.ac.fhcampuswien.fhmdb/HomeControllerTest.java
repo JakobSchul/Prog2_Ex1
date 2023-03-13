@@ -1,6 +1,5 @@
 package at.ac.fhcampuswien.fhmdb;
 
-import at.ac.fhcampuswien.fhmdb.HomeController;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
@@ -12,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static at.ac.fhcampuswien.fhmdb.HomeController.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -38,6 +36,16 @@ public class HomeControllerTest extends HomeController {
 
 
     }
+//    @Test
+//    public void checks_If_There_Are_Not_Only_TwentieOne_Movies() {
+//
+//        int numberMovies = 22;
+//        assertEquals(numberMovies, allMovies.size());
+//
+//
+//
+//
+//    }
 
     @Test
     public void descendingTest() {
