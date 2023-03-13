@@ -70,5 +70,9 @@ class MovieTest {
         assertEquals(genreList,movie.getGenreList());
     }
 
+    /*@Test
+    void test_to_get_Genres_Strings(){
+
+    } // could be a test but kinda useless? */
 
 }
