@@ -66,7 +66,6 @@ public class HomeController implements Initializable {
             pickedGenre = genreComboBox.getValue().toString().toLowerCase();
         }
         catch(Exception e) {
-                   System.out.println("genreComboBox is NULL");
                    pickedGenre = " ";
         }
         for (Movie movie : movies) {
