@@ -1,7 +1,7 @@
 package at.ac.fhcampuswien.fhmdb;
-
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import com.jfoenix.controls.JFXButton;
+import com.sun.javafx.collections.NonIterableChange;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.Test;
@@ -28,24 +28,24 @@ public class HomeControllerTest extends HomeController {
         return movies;
     }
 
-    @Test
-    public void checks_If_There_Are_Only_TwentieOne_Movies() {
 
+    @Test
+    public void checks_If_There_Are_Only_TwentyOne_Movies() {
+        //Given
         int numberMovies = 21;
+
+        //When & Then
+        assertEquals(numberMovies, allMovies.size());
+    }
+    @Test
+    public void checks_If_There_Are_more_than_TwentyOne_Movies() {
+        //Given
+        int numberMovies = 22;
+
+        //When & Then
         assertEquals(numberMovies, allMovies.size());
 
-
     }
-//    @Test
-//    public void checks_If_There_Are_Not_Only_TwentieOne_Movies() {
-//
-//        int numberMovies = 22;
-//        assertEquals(numberMovies, allMovies.size());
-//
-//
-//
-//
-//    }
 
     @Test
     public void descendingTest() {
