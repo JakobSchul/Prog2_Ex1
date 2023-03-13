@@ -10,7 +10,6 @@ class MovieCellTest extends MovieCell {
 
     // helper class for tests
 
-    @Test
     public void makeTestMovie(){
 
         // constructor erstellt

@@ -75,7 +75,6 @@ public class HomeController implements Initializable {
 
 
         ObservableList<Movie> searchResults = FXCollections.observableArrayList();
-        System.out.println("asdasd");
         for (Movie movie : movies) {
             if (movie.compareGenreStrings(getComboboxString())) {
                 if (movie.compareTitle(searchField.getText().toLowerCase()) == true || movie.compareDescription(searchField.getText().toLowerCase()) == true) {
