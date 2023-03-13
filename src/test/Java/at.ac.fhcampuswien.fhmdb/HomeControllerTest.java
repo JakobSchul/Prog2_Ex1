@@ -1,13 +1,9 @@
 package at.ac.fhcampuswien.fhmdb;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
-import com.jfoenix.controls.JFXButton;
-import com.sun.javafx.collections.NonIterableChange;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
