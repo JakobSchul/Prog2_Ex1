@@ -2,8 +2,6 @@ package at.ac.fhcampuswien.fhmdb.models;
 
 
 import java.util.ArrayList;
-
-
 import java.util.List;
 
 
