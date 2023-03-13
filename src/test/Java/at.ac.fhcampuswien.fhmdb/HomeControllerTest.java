@@ -1,4 +1,5 @@
-package at.ac.fhcampuswien.fhmdb.test;
+package at.ac.fhcampuswien.fhmdb;
+
 import at.ac.fhcampuswien.fhmdb.HomeController;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import com.jfoenix.controls.JFXButton;
@@ -15,7 +16,7 @@ import static at.ac.fhcampuswien.fhmdb.HomeController.*;
 
 import static org.junit.Assert.assertEquals;
 
-public class HomeControllerTest {
+public class HomeControllerTest extends HomeController {
 
     public ObservableList<Movie> dummyData() {
 
@@ -29,41 +30,14 @@ public class HomeControllerTest {
         return movies;
     }
 
-//    @Test
-//    public void if_search_field_empty_all_movies_are_shown(){
-//        //Given
-//        ObservableList<Movie> movies = dummyData();
-//        //When
-//        searchMovies(movies,"");
-//        //Then
-//        assertEquals(3,searchMovies(dummyData(),"").size());
-//    }
-//
-//    @Test
-//    public void search_finds_in_description_the_and_returns_2(){
-//        //Given
-//        ObservableList<Movie> movies = dummyData();
-//        //When
-//        searchMovies(movies,"the");
-//        //Then
-//        assertEquals(2,searchMovies(dummyData(),"the").size());
-//
-//    }
+    @Test
+    public void checks_If_There_Are_Only_TwentieOne_Movies() {
 
-//    @Test
-//    public void knight_searchMovies_returns_2() {
-//
-//        // given
-//        // Observable list at the top -
-//        ObservableList<Movie> movies = dummyData();
-//        // when
-//        // knight can be found in list -
-//        searchMovies(movies,"Knight");
-//        // then
-//        assertEquals(2, searchMovies(dummyData(), "Knight").size());
-//
-//    }
+        int numberMovies = 21;
+        assertEquals(numberMovies, allMovies.size());
 
+
+    }
 
     @Test
     public void descendingTest() {

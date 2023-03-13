@@ -72,6 +72,9 @@ public class Movie {
 
 //        System.out.println(ser);
     }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 
 
