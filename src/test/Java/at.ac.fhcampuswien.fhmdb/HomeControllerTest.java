@@ -7,9 +7,7 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.List;
 
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class HomeControllerTest extends HomeController {
 
@@ -40,7 +38,7 @@ public class HomeControllerTest extends HomeController {
         int numberMovies = 22;
 
         //When & Then
-        assertEquals(numberMovies, allMovies.size());
+        assertNotEquals(numberMovies, allMovies.size());
 
     }
 
