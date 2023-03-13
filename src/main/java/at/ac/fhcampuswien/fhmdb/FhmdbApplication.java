@@ -29,7 +29,6 @@ public class FhmdbApplication extends Application {
                 String title = record.get("original_title");
                 String overview = record.get("overview");
                 String genreString = record.get("genre") + "Filter";
-                System.out.println(genreString);
                 List<String> genreList = Arrays.asList(genreString.split(" \\s* ,\\s*"));
                 movies.add(new Movie(title, overview, genreList));
             }
