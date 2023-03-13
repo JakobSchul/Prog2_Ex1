@@ -44,7 +44,7 @@ public class HomeController implements Initializable {
     public final List<Movie> allMovies = FhmdbApplication.initializeMovies();
 
 
-    private final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();   // automatically updates corresponding UI elements when underlying data changes
+    public final ObservableList<Movie> observableMovies = FXCollections.observableArrayList();   // automatically updates corresponding UI elements when underlying data changes
 
 
     public static void sortMoviesByTitleAscending(ObservableList<Movie> movies) {
@@ -130,6 +130,9 @@ public class HomeController implements Initializable {
 
         movieListView.setItems(observableMovies);
         searchField.clear();
+
+        // setzt auch genre back
+        genreComboBox.setValue(null);
 
         return observableMovies;
 

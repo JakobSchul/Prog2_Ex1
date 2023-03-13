@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 import javax.swing.text.html.ListView;
 import java.util.Collections;
@@ -19,6 +20,7 @@ public class HomeControllerTest {
 
 
     private JFXButton resetBtn;
+
     public ObservableList<Movie> dummyData() {
 
         List<String> genreList = Collections.singletonList("Action");
@@ -76,7 +78,7 @@ public class HomeControllerTest {
         ObservableList<Movie> movies = dummyData();
 
         sortMoviesByTitleDescending(movies);
-        assertEquals("Zhe Dark Knight",movies.get(0).getTitle());
+        assertEquals("Zhe Dark Knight", movies.get(0).getTitle());
 
 
     }
@@ -86,10 +88,7 @@ public class HomeControllerTest {
         ObservableList<Movie> movies = dummyData();
 
         sortMoviesByTitleAscending(movies);
-        assertEquals("Ahe Shawshank Redemption",movies.get(0).getTitle());
+        assertEquals("Ahe Shawshank Redemption", movies.get(0).getTitle());
     }
-
-
-
 
 }
